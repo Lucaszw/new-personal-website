@@ -1,0 +1,142 @@
+@mixin font($font-family, $font-file) {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file);
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+
+@include font('PIXELATED', '../fonts/FFFFORWA.ttf');
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+.title {
+    position: fixed;
+    color: white;
+    font-family: sans-serif;
+    font-size: 30px;
+    top: 30px;
+    left: 30px;
+}
+
+.page {
+    background: red;
+    width: 100%;
+    height: 100%;
+}
+
+#page1 {
+    background: #5e5468;
+}
+
+#page2 {
+    background: #676172;
+    position: relative;
+    overflow: hidden;
+    // perspective: 100px;
+}
+
+#page3 {
+    background: #515b53;
+}
+
+#page-info {
+    width: 100px;
+    height: 30px;
+    background: black;
+    position: fixed;
+    bottom: 20px;
+    left: calc(50% - 150px);
+}
+
+.square {
+  border: 0.1px solid #9b92ad; 
+  background:#676172; 
+  position: absolute;
+  display:flex; 
+  align-items: center; 
+  justify-content: center;
+  transform-style: preserve-3d;
+  
+  div.front {
+    display:flex; 
+    align-items: center; 
+    justify-content: center;
+    background-size: cover;
+  }
+  .front, .back {
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+  }
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    background: white;
+  }
+}
+
+.projects-title {
+  color: white;
+  font-family: PIXELATED;
+  font-size: 18px;
+
+}
+
+// Title
+.ml5 {
+    position: relative;
+    font-weight: 300;
+    font-size: 3em;
+    color: white;
+    font-family: PIXELATED;
+    text-align: center;
+    top: 50%;
+  }
+  
+  .ml5 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.05em;
+    padding-right: 0.05em;
+    padding-bottom: 0.15em;
+    line-height: 1em;
+  }
+  
+  .ml5 .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 5px;
+    width: 100%;
+    background-color: white;
+    transform-origin: 0.5 0;
+    font-family: PIXELATED;
+  }
+
+  .line.line1 {
+    top: -45px;
+  }
+  
+  .ml5 .ampersand {
+    font-family: PIXELATED, serif;
+    font-style: italic;
+    font-weight: 400;
+    // width: 1em;
+    // margin-right: -0.1em;
+    // margin-left: -0.1em;
+  }
+  
+  .ml5 .letters {
+    display: inline-block;
+    opacity: 0;
+  }
+  
