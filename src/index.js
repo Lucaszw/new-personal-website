@@ -12,12 +12,12 @@ let titleAnimation;
 // Pages
 const pg1 = el("div", {id: "page1", class: "page"});
 const pg2 = el("div", {id: "page2", class: "page"});
-const pg3 = el("div", {id: "page3", class: "page"});
+// const pg3 = el("div", {id: "page3", class: "page"});
 
 // pg3.appendChild(project1)
 mount(document.body, pg1);
 mount(document.body, pg2);
-mount(document.body, pg3);
+// mount(document.body, pg3);
 
 // Info
 const pageInfo = el("div", {id: "page-info"});
@@ -26,11 +26,11 @@ mount(document.body, pageInfo);
 // Disable Scroll
 class Scroll {
     constructor() {
-        this.pages = [pg1, pg2, pg3];
+        this.pages = [pg1, pg2];
         this.pages.currentIndex = 0;
         pg1.onView = this.page1Viewed;
         pg2.onView = this.page2Viewed;
-        pg3.onView = this.page3Viewed;
+        // pg3.onView = this.page3Viewed;
         this.scrollTime = 200;
         this._scrolling = false;
         this.trackDirection();

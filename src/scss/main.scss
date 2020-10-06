@@ -24,20 +24,20 @@ body {
 }
 
 .page {
-    background: red;
+    // background: red;
     width: 100%;
     height: 100%;
 }
 
 #page1 {
-    background: #5e5468;
+    background: #d52525;
 }
 
 #page2 {
-    background: #676172;
     position: relative;
     overflow: hidden;
-    // perspective: 100px;
+    // perspective: 1px;
+    background: black;
 }
 
 #page3 {
@@ -47,26 +47,26 @@ body {
 #page-info {
     width: 100px;
     height: 30px;
-    background: black;
+    background: white;
     position: fixed;
     bottom: 20px;
     left: calc(50% - 150px);
 }
 
 .square {
-  border: 0.1px solid #9b92ad; 
-  background:#676172; 
   position: absolute;
   display:flex; 
   align-items: center; 
   justify-content: center;
   transform-style: preserve-3d;
-  
+  border: 0.1px solid #6c6b6b;
+
   div.front {
     display:flex; 
     align-items: center; 
     justify-content: center;
     background-size: cover;
+    background-color:black;
   }
   .front, .back {
     height: 100%;
@@ -79,6 +79,7 @@ body {
     left: 0;
     transform: rotateY(180deg);
     background: white;
+    border:none;
   }
 }
 

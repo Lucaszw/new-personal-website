@@ -1,0 +1,16 @@
+{
+    "projects": [
+        {"icon": "augmented-reality.jpg", "html": ""},
+        {"icon": "fading-text.png", "html": ""},
+        {"icon": "ferrofluid-animation.jpg", "html": ""},
+        {"icon": "ferropet-toy.jpg", "html": ""},
+        {"icon": "hydrophobic-surfaces.jpg", "html": ""},
+        {"icon": "lavalamp.jpg", "html": ""},
+        {"icon": "liquid-font.png", "html": ""},
+        {"icon": "liquid-svg.png", "html": ""},
+        {"icon": "magnetic-traps.png", "html": ""},
+        {"icon": "mini-bubble-wall.jpg", "html": ""},
+        {"icon": "paper-lightbox.png", "html": ""},
+        {"icon": "patent.png", "html": ""}
+    ]
+}

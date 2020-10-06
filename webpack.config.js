@@ -6,7 +6,27 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          {loader:"style-loader"}, 
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: { sourceMap: true }
+          }]
       },
       {
         test: /\.js$/,
@@ -42,6 +62,7 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, 'assets'),
-    contentBasePublicPath: '/assets'
+    contentBasePublicPath: '/assets',
+    disableHostCheck: true
   }
 };

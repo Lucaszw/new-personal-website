@@ -1,9 +1,3 @@
-const string2dom = (string)=> {
-    const domParser = document.createElement('div')
-	domParser.innerHTML = string 
-	return domParser.firstChild
-}
-
 import { el, mount } from "redom";
 import * as _ from 'lodash';
 import Timeout from 'await-timeout';
@@ -11,39 +5,34 @@ import anime from 'animejs/lib/anime.es.js';
 import html2canvas from 'html2canvas';
 import randomInt from 'random-int';
 
-import project1String from './projects/project-1.html';
-import project1Icon from './projects/icons/project-1.jpeg';
-let project1 = string2dom(project1String);
-project1.icon = project1Icon;
+import {projects} from './projects/projects.js';
 
-import project2String from './projects/project-2.html';
-import project2Icon from './projects/icons/project-2.jpeg';
-let project2 = string2dom(project2String);
-project2.icon = project2Icon;
-
-import project3String from './projects/project-3.html';
-import project3Icon from './projects/icons/project-3.jpeg';
-let project3 = string2dom(project3String);
-project3.icon = project3Icon;
 
 class ProjectsDisplay {
     constructor(page, width, height) {
-        this.projects = [project3, project2, project1];
+        this.projects = projects;
         this.page = page;
         this.width = width;
         this.height = height;
         this.animatingRotation = false;
         this.listenToPageResize();
         this.fillPageWithSquares();
-        for (let project of this.projects)
-            this.page.appendChild(project);
+        for (let project of this.projects) {
+            console.log({project});
+            if (project.html)
+                this.page.appendChild(project.html);
+        }
     }
     listenToPageResize() {
         window.addEventListener("resize", _.debounce(this.fillPageWithSquares.bind(this), 250, {leading: false, trailing: true})); 
     }
     fillPageWithSquares() {
-        for (let s of this.page.querySelectorAll(".square"))
+        let squares = this.page.querySelectorAll(".square");
+        console.log({squares});
+        for (let s of squares) {
+            console.log({s});
             s.remove();
+        }
         let bbox = this.page.getBoundingClientRect();
 
         let cols = Math.floor(bbox.width/this.width);
@@ -75,9 +64,10 @@ class ProjectsDisplay {
                 row = randomInt(0, rows-1);
             }
             _.set(projectPlace, `[${row}][${col}]`, project);
-            console.log("FOUND: ", row, col);
+            // console.log("FOUND: ", row, col);
         }
-        console.log({projectPlace});
+        console.log("FINISHED...");
+        // console.log({projectPlace});
 
         // Draw each square
         for (let row = 0; row < rows; row ++) {
@@ -112,7 +102,7 @@ class ProjectsDisplay {
         mount(this.page, square);
 
         if (isMiddle == true) {
-            square.style.background = '#676172';
+            // square.style.background = '#676172';
             square.querySelector(".front").innerHTML = "<b class='projects-title'>PROJECTS</b>";
             square.classList.add("projects-title");
             // square.style.zIndex = "2000";
@@ -177,7 +167,7 @@ class ProjectsDisplay {
         canvas.height = height * dpr;
 
         let ctx = canvas.getContext('2d');
-        ctx.putImageData(imgData, -c*width*2,-r*height*2);
+        ctx.putImageData(imgData, -c*width*dpr,-r*height*dpr);
     }
     async turnOverSquare(square, imgData) {
         let rotation;
@@ -201,7 +191,7 @@ class ProjectsDisplay {
     async turnOverAllSquares(steps, project) {
         let imgData;
         if (project) {
-            const imgContext = (await this.takeSnapshot(project)).getContext('2d');
+            const imgContext = (await this.takeSnapshot(project.html)).getContext('2d');
             imgData = imgContext.getImageData(0,0,window.innerWidth*10,window.innerHeight*10);    
         }
 
